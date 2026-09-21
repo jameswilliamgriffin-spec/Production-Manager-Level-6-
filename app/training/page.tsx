@@ -16,6 +16,8 @@ export default function TrainingPage() {
         title="Training"
         copy={<>Three core modules, taken in any order depending on when you join. Each runs across one or two taught days and sets up the piece of work that follows it.</>}
         meta={<>3 MODULES &middot; 5 TRAINING DAYS &middot; ANY ORDER</>}
+        image="/images/hero-coaching-session.webp"
+        imageAlt="A coach and learner in a one-to-one mentoring session"
       />
       <TrainingBrowser />
     </main>

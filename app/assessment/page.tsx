@@ -25,6 +25,8 @@ export default function EpaPage() {
         title="Assessment"
         copy={<>ST1483 is a &ldquo;new model&rdquo; standard, built from the ground up under Skills England&rsquo;s post-2025 assessment reform. There is no single end-point gateway: assessment can happen at any appropriate point in the programme, done by an independent assessor from an approved Assessment Organisation — not by your employer or your training provider.</>}
         meta={<>Apprenticeship Assessment Plan {ASSESSMENT_REF}</>}
+        image="/images/hero-professional-discussion.webp"
+        imageAlt="Two colleagues in a professional discussion over a laptop"
       />
 
       <div className="ksb-bar">

@@ -1,21 +1,22 @@
 'use client';
 
 import { MeshGradient } from '@paper-design/shaders-react';
-import { motion, useReducedMotion } from 'motion/react';
+import { motion, useReducedMotion, useScroll, useTransform } from 'motion/react';
 import { useEffect, useState } from 'react';
 import { HeroDotField } from '@/components/hero-dot-field';
 import { isIntroDone, subscribeIntro } from '@/lib/intro-state';
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
-// No production photography for this programme yet, so the hero runs on the
-// shader alone rather than a plate image. Ink keeps most of the field dark so
-// the headline stays dominant; Creative Alliance orange leads the colour, a
-// deeper amber gives it falloff, and the sky blue keeps it tied to the brand.
+// Ink keeps most of the field dark so the plate and headline stay dominant.
+// Creative Alliance orange leads the colour, a deeper amber gives it falloff,
+// and the sky blue keeps it tied to the brand.
 const shaderColors = ['#0a0f0f', '#f78f21', '#f9a83f', '#b85a14', '#8bb1ca'];
 
 export function Hero() {
   const reduceMotion = useReducedMotion();
+  const { scrollYProgress } = useScroll();
+  const imageY = useTransform(scrollYProgress, [0, 0.32], ['0%', reduceMotion ? '0%' : '10%']);
 
   // Hold the entrance until the opening overlay has lifted, so the title lines
   // don't rise behind it. Reduced motion (and any missed signal) settles at once.
@@ -53,6 +54,11 @@ export function Hero() {
           speed={reduceMotion ? 0 : 0.8}
           frame={reduceMotion ? 8000 : 0}
           maxPixelCount={1600 * 900}
+        />
+        <motion.img
+          style={{ y: imageY }}
+          src="/images/hero-production-office.webp"
+          alt="A production office mid-shift — schedules on the wall, a team at multi-monitor workstations"
         />
         <div className="image-grade" aria-hidden="true" />
       </motion.div>

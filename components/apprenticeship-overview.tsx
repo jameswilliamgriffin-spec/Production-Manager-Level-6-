@@ -16,14 +16,14 @@ const ease = [0.22, 1, 0.36, 1] as const;
 // Option summaries are plain-English overviews grounded in ST1483 v2.0 (occupation
 // summary and each option's specialist responsibilities, from the research notes).
 // `number` is our own public-facing display order, matching the standard's own
-// Option 1 / 2 / 3 numbering. No production photography exists for this programme
-// yet, so each option's panel runs on the ghost numeral and grade treatment alone
-// rather than a plate image.
+// Option 1 / 2 / 3 numbering.
 const pathways = [
   {
     number: '01',
     title: 'Junior Production Manager',
     specialism: 'Screen & Audio',
+    image: '/images/option-screen-audio-office.webp',
+    alt: 'A broadcast production office with schedules and multi-monitor workstations',
     tags: ['SCHEDULING', 'FINANCE', 'DELIVERY'],
     summary:
       'Oversees all operational and logistical elements of a screen or audio production — film, TV, commercials, radio, podcasts. Leads the production team, may manage production co-ordinators, and plans the workflow from pre-production through to delivery of the final content.',
@@ -45,6 +45,8 @@ const pathways = [
     number: '02',
     title: 'Junior Post Production Manager',
     specialism: 'Post & VFX',
+    image: '/images/option-post-suite.webp',
+    alt: 'A post-production suite with an editor reviewing footage on multiple screens',
     tags: ['WORKFLOW', 'CLIENT', 'PIPELINE'],
     summary:
       'Works closely with producers and supervisors to build and run the post schedule, tracking workflow through departments so internal and external deadlines are met. Leads the post team day-to-day and is often the link between the production company and post/VFX suppliers.',
@@ -66,6 +68,8 @@ const pathways = [
     number: '03',
     title: 'Assistant Production Manager',
     specialism: 'Live Arts',
+    image: '/images/option-live-arts-backstage.webp',
+    alt: 'A stage manager backstage with a headset and running sheet during a technical rehearsal',
     tags: ['TECHNICAL', 'VENUES', 'TOURING'],
     summary:
       'Supports the technical director in realising every technical element of a production design — for live performance and live events — within agreed budget, time and technical parameters, across theatres, touring venues and non-traditional spaces.',
@@ -262,7 +266,19 @@ export function ApprenticeshipOverview() {
             data-cursor-label="INSPECT"
             aria-hidden={expanded || undefined}
           >
-            <div className="pathway-frame-inner" ref={targetRef} />
+            <div className="pathway-frame-inner" ref={targetRef}>
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={active.image}
+                  src={active.image}
+                  alt={active.alt}
+                  initial={reduceMotion ? false : { opacity: 0, scale: 1.05, clipPath: 'inset(0 0 100% 0)' }}
+                  animate={{ opacity: 1, scale: 1, clipPath: 'inset(0 0 0% 0)' }}
+                  exit={reduceMotion ? {} : { opacity: 0, clipPath: 'inset(100% 0 0 0)' }}
+                  transition={{ duration: 0.55, ease }}
+                />
+              </AnimatePresence>
+            </div>
             <div className="pathway-grade" aria-hidden="true" />
             <AnimatePresence mode="wait">
               <motion.span

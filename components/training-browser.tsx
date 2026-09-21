@@ -128,6 +128,19 @@ export function TrainingBrowser() {
           tabIndex={0}
         >
           <div className="pathway-frame training-page-frame" aria-hidden={expanded || undefined}>
+            <div className="pathway-frame-inner">
+              <AnimatePresence mode="wait">
+                <motion.img
+                  key={active.image}
+                  src={active.image}
+                  alt={active.imageAlt}
+                  initial={reduceMotion ? false : { opacity: 0, scale: 1.05, clipPath: 'inset(0 0 100% 0)' }}
+                  animate={{ opacity: 1, scale: 1, clipPath: 'inset(0 0 0% 0)' }}
+                  exit={reduceMotion ? {} : { opacity: 0, clipPath: 'inset(100% 0 0 0)' }}
+                  transition={{ duration: 0.55, ease }}
+                />
+              </AnimatePresence>
+            </div>
             <div className="pathway-grade" aria-hidden="true" />
             <AnimatePresence mode="wait">
               <motion.span

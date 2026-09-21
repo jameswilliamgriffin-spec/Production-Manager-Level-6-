@@ -17,6 +17,8 @@ export default function KsbsPage() {
         title="Knowledge, Skills and Behaviours"
         copy={<>Your Knowledge, Skills and Behaviours — KSBs — are the criteria you evidence across the apprenticeship. They are not a test at the end: you build towards them through the work you do every day, and the evidence comes from that work.</>}
         meta={<>Occupational standard {STANDARD_REF}</>}
+        image="/images/hero-schedule-detail.webp"
+        imageAlt="A production schedule and call sheet laid out on a desk"
       />
       <KsbBrowser />
     </main>

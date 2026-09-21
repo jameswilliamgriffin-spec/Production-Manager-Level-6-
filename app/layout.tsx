@@ -27,7 +27,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'Production Manager Level 6',
     description: 'Build production craft. Develop a specialism. Progress towards assessment.',
-    images: ['/assets/creative-alliance.svg'],
+    images: ['/images/general-team-collaboration.webp'],
   },
 };
 

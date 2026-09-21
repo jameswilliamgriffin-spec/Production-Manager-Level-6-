@@ -17,6 +17,8 @@ export default function ProjectsPage() {
         title="Projects"
         copy={<>One piece of work per core module, produced after its training days. Then a shelf of option-specific briefs — pulled whenever real production work matches, in any order, for as long as the programme runs.</>}
         meta={<>3 CORE PIECES OF WORK &middot; 3 OPTION SHELVES</>}
+        image="/images/hero-theatre-rehearsal.webp"
+        imageAlt="A technical rehearsal in progress on a theatre stage"
       />
       <ProjectsBrowser />
     </main>

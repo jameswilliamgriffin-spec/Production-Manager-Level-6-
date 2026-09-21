@@ -24,6 +24,8 @@ export default function TrainingPlanPage() {
           </>
         }
         meta={`${PLAN_TOTAL_HOURS}+ OFF-THE-JOB HOURS (MINIMUM) · ${PROGRAMME_LENGTH}`}
+        image="/images/hero-calendar-wall.webp"
+        imageAlt="A wall-mounted production calendar and schedule"
       />
       <TrainingPlanBrowser />
     </main>

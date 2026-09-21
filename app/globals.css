@@ -118,7 +118,10 @@ a:focus-visible { outline: var(--focus-ring); outline-offset: 3px; }
 
 .hero-content { position: relative; z-index: 4; width: min(1220px, 82vw); padding: clamp(94px, 9vh, 116px) 0 56px 7vw; }
 .hero-title { margin: 0; color: #ffffff; font-family: var(--display); font-size: clamp(54px, 7.2vw, 128px); font-weight: 300; letter-spacing: -.055em; line-height: .86; }
-.title-line { display: block; overflow: hidden; padding-bottom: .08em; }
+/* padding-bottom clears the font's descender depth so overflow:hidden (needed
+   for the flip-up reveal animation) never crops a g/y/j/p/q on this line — .08em
+   was only ~10px at the hero's largest size, well short of Oswald's ~20%+ descender. */
+.title-line { display: block; overflow: hidden; padding-bottom: .24em; }
 .title-line > span { display: block; }
 .hero-intro { max-width: 700px; margin-top: clamp(28px, 3.2vh, 42px); }
 .hero-intro p { margin: 0; color: #e2e9ee; font-family: var(--display); font-size: clamp(17px, 1.4vw, 24px); font-weight: 300; line-height: 1.45; }
@@ -245,19 +248,28 @@ a:focus-visible { outline: var(--focus-ring); outline-offset: 3px; }
 /* 8px oversize so the ≤6px cursor parallax never exposes an edge. */
 .pathway-frame-inner { position: absolute; inset: -8px; will-change: transform; }
 .pathway-frame img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; filter: saturate(.68) contrast(1.1) brightness(.75); }
-.pathway-grade { position: absolute; inset: 0; background: radial-gradient(120% 90% at 100% 0%, rgba(247, 143, 32, .12), transparent 60%), radial-gradient(100% 90% at 0% 100%, rgba(29, 157, 240, .1), transparent 60%); }
+/* Darkens corner-to-corner (on top of the photo's own brightness filter) so the
+   white overlay readouts stay legible regardless of what's underneath, plus the
+   brand-colour tints the two radial gradients were already adding. */
+.pathway-grade {
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(120% 90% at 100% 0%, rgba(247, 143, 32, .14), transparent 60%),
+    radial-gradient(100% 90% at 0% 100%, rgba(29, 157, 240, .12), transparent 60%),
+    linear-gradient(180deg, rgba(5, 11, 18, .3) 0%, rgba(5, 11, 18, .08) 30%, rgba(5, 11, 18, .1) 65%, rgba(5, 11, 18, .55) 100%);
+}
 /* Oversized ghost numeral behind the readouts — production metadata, barely there. */
-.pathway-ghost { position: absolute; right: 4%; bottom: 1%; margin: 0; color: var(--paper); font-family: var(--display); font-size: clamp(130px, 22vw, 300px); font-weight: 300; line-height: .78; letter-spacing: -.06em; pointer-events: none; }
+.pathway-ghost { position: absolute; right: 4%; bottom: 1%; margin: 0; color: #ffffff; font-family: var(--display); font-size: clamp(130px, 22vw, 300px); font-weight: 300; line-height: .78; letter-spacing: -.06em; pointer-events: none; }
 .pathway-detail { position: relative; display: grid; min-height: 268px; align-items: start; padding: 26px 26px 30px; border-top: 1px solid var(--rule); background: #ffffff; }
 .pathway-detail > div { grid-area: 1 / 1; }
 .detail-eyebrow { display: block; color: var(--orange); font-size: var(--eyebrow-sm); font-weight: var(--eyebrow-weight); letter-spacing: var(--eyebrow-tracking); text-transform: uppercase; }
 .pathway-detail h3 { margin: 14px 0 12px; font-family: var(--display); font-size: clamp(24px, 1.9vw, 32px); font-weight: 300; letter-spacing: -.035em; line-height: 1; }
 .pathway-detail p { margin: 0; max-width: 60ch; color: #3d5160; font-size: 14px; line-height: 1.66; }
-.visual-index { position: absolute; top: 22px; left: 22px; display: grid; width: 105px; grid-template-columns: auto 1fr; align-items: end; gap: 3px 9px; }
-.visual-index span { grid-column: 1; color: #3d4a54; font-size: 7px; font-weight: 500; letter-spacing: .16em; }
-.visual-index strong { grid-column: 1; color: var(--paper); font-family: var(--display); font-size: 54px; font-weight: 300; line-height: .85; }
+.visual-index { position: absolute; top: 22px; left: 22px; display: grid; width: 105px; grid-template-columns: auto 1fr; align-items: end; gap: 3px 9px; text-shadow: 0 1px 6px rgba(0, 0, 0, .45); }
+.visual-index span { grid-column: 1; color: rgba(255, 255, 255, .8); font-size: 9px; font-weight: 500; letter-spacing: .16em; }
+.visual-index strong { grid-column: 1; color: #ffffff; font-family: var(--display); font-size: 54px; font-weight: 300; line-height: .85; }
 .visual-index i { grid-column: 2; grid-row: 2; width: 100%; height: 1px; margin-bottom: 6px; background: var(--orange); }
-.visual-coordinates { position: absolute; right: 18px; bottom: 16px; display: grid; gap: 6px; justify-items: end; color: rgba(36, 54, 66, .67); font-size: 7px; font-weight: 500; letter-spacing: .16em; }
+.visual-coordinates { position: absolute; right: 18px; bottom: 16px; display: grid; gap: 6px; justify-items: end; color: rgba(255, 255, 255, .75); font-size: 9px; font-weight: 500; letter-spacing: .16em; text-shadow: 0 1px 6px rgba(0, 0, 0, .45); }
 .visual-coordinates span { display: flex; gap: 10px; align-items: center; white-space: nowrap; }
 .visual-coordinates span:last-child span { font-variant-numeric: tabular-nums; }
 .visual-coordinates i { font-style: normal; }
@@ -267,12 +279,12 @@ a:focus-visible { outline: var(--focus-ring); outline-offset: 3px; }
    faint centre reticle, so the image panel reads as something framed in a camera
    or a review tool rather than a photo with corner decoration. */
 .frame-corners { position: absolute; inset: 14px; }
-.frame-corners i { position: absolute; width: 22px; height: 22px; border-color: rgba(36, 54, 66, .66); border-style: solid; }
+.frame-corners i { position: absolute; width: 22px; height: 22px; border-color: rgba(255, 255, 255, .6); border-style: solid; }
 .frame-corners i:nth-child(1) { top: 0; left: 0; border-width: 1px 0 0 1px; }
 .frame-corners i:nth-child(2) { top: 0; right: 0; border-width: 1px 1px 0 0; }
 .frame-corners i:nth-child(3) { right: 0; bottom: 0; border-width: 0 1px 1px 0; }
 .frame-corners i:nth-child(4) { bottom: 0; left: 0; border-width: 0 0 1px 1px; }
-.frame-corners::before, .frame-corners::after { content: ''; position: absolute; left: 50%; top: 50%; background: rgba(10, 53, 82, .28); }
+.frame-corners::before, .frame-corners::after { content: ''; position: absolute; left: 50%; top: 50%; background: rgba(255, 255, 255, .4); }
 .frame-corners::before { width: 13px; height: 1px; transform: translate(-50%, -50%); }
 .frame-corners::after { width: 1px; height: 13px; transform: translate(-50%, -50%); }
 
@@ -522,6 +534,24 @@ a.pm-card { cursor: pointer; }
 .po-pathway-pieces span { flex: none; min-width: 92px; color: var(--sky); font-size: 10px; font-weight: 500; letter-spacing: .1em; text-transform: uppercase; }
 .po-pathway-pieces strong { font-family: var(--display); font-size: 14px; font-weight: 500; color: var(--paper); }
 
+/* Condensed-by-default card toggle, shared by the core module cards and the
+   option project cards below. Grid-track animation (0fr -> 1fr) so it doesn't
+   need to know the content's height up front — same technique as the KSB
+   accordion and the pathway breakdown panels elsewhere on the site. */
+.po-card-toggle {
+  display: flex; align-items: center; gap: 8px; width: 100%; margin-top: 18px; padding: 0; border: 0; background: none;
+  color: var(--sky); font-family: var(--display); font-size: 13px; font-weight: 500; letter-spacing: .01em; text-align: left; cursor: pointer;
+}
+.po-card-toggle:hover { color: var(--orange); }
+.po-card-toggle:focus-visible { outline: var(--focus-ring); outline-offset: 3px; }
+.po-card-chevron { flex: none; width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(45deg); transition: transform 220ms ease; }
+.po-card-toggle[aria-expanded="true"] .po-card-chevron { transform: rotate(-135deg); }
+
+.po-card-panel-outer { display: grid; grid-template-rows: 0fr; transition: grid-template-rows 360ms var(--ease-out); }
+.po-card-panel-outer[data-open] { grid-template-rows: 1fr; }
+.po-card-panel-clip { min-height: 0; overflow: hidden; }
+.po-card-panel { display: block; padding-top: 4px; }
+
 /* Decorative fan connector between the core grid and the option columns — three
    lines converge on a centre point, then re-diverge to the three columns below,
    echoing the core-to-options diagram. viewBox 0-100 both axes + preserveAspectRatio
@@ -551,15 +581,23 @@ a.pm-card { cursor: pointer; }
    card's dot marks its place on it. */
 .po-project-chain { position: relative; display: flex; flex-direction: column; gap: 16px; padding-left: 22px; }
 .po-project-chain::before { content: ''; position: absolute; top: 10px; bottom: 10px; left: 5px; width: 1px; background: rgba(10, 53, 82, .16); }
-.po-project-card { position: relative; padding: 16px 18px; border: 1px solid rgba(10, 53, 82, .1); border-radius: 12px; background: #fbfcfd; transition: border-color 240ms ease, background 240ms ease, transform 240ms ease; }
+.po-project-card {
+  position: relative; display: block; width: 100%; padding: 16px 18px; border: 1px solid rgba(10, 53, 82, .1); border-radius: 12px;
+  background: #fbfcfd; font-family: inherit; text-align: left; cursor: pointer; appearance: none;
+  transition: border-color 240ms ease, background 240ms ease, transform 240ms ease;
+}
 .po-project-card::before { content: ''; position: absolute; top: 21px; left: -20px; width: 9px; height: 9px; border-radius: 50%; background: var(--sky); box-shadow: 0 0 0 3px #ffffff; }
 .po-project-card:hover { border-color: rgba(29, 157, 240, .35); background: #ffffff; transform: translateX(2px); }
-.po-project-card strong { display: block; font-family: var(--display); font-size: 15px; font-weight: 500; letter-spacing: -.01em; color: var(--paper); }
-.po-project-card span { display: block; margin-top: 6px; color: #4c6577; font-size: 13px; line-height: 1.58; }
+.po-project-card:focus-visible { outline: var(--focus-ring); outline-offset: 2px; }
+.po-project-card-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.po-project-card strong { font-family: var(--display); font-size: 15px; font-weight: 500; letter-spacing: -.01em; color: var(--paper); }
+.po-project-card .po-card-chevron { color: var(--sky); }
+.po-project-card .po-card-panel { display: block; color: #4c6577; font-size: 13px; line-height: 1.58; text-align: left; }
 .po-project-card.is-flexible { border-color: rgba(247, 143, 32, .3); background: rgba(247, 143, 32, .04); }
 .po-project-card.is-flexible::before { background: var(--orange); }
 .po-project-card.is-flexible:hover { border-color: rgba(247, 143, 32, .5); background: rgba(247, 143, 32, .07); }
 .po-project-card.is-flexible strong { color: var(--orange); }
+.po-project-card.is-flexible .po-card-chevron { color: var(--orange); }
 
 @media (max-width: 1120px) {
   .po-module-grid, .po-option-columns { grid-template-columns: 1fr; }
@@ -585,8 +623,13 @@ a.pm-card { cursor: pointer; }
     linear-gradient(134deg, #0a3552 0%, #063049 55%, #042c47 100%);
 }
 .ksb-hero-copy { position: relative; z-index: 2; }
+/* Plate photo sits above the base gradient but below the shader wash + scrim,
+   so the shader reads as a colour grade over the photo rather than competing
+   with it. Muted and darkened so white copy stays legible without the scrim
+   alone having to do all the work. */
+.ksb-hero-plate { z-index: 0; object-fit: cover; filter: saturate(.7) contrast(1.05) brightness(.6); }
 /* full-bleed like the homepage hero; the scrim keeps the copy legible over it */
-.ksb-hero-shader { position: absolute; z-index: 0; inset: 0; pointer-events: none; }
+.ksb-hero-shader { position: absolute; z-index: 1; inset: 0; pointer-events: none; mix-blend-mode: soft-light; }
 .ksb-hero-mesh { position: absolute; inset: 0; width: 100%; height: 100%; }
 .ksb-hero-scrim { position: absolute; inset: 0; background: linear-gradient(90deg, rgba(5, 11, 18, .9) 0%, rgba(5, 11, 18, .74) 42%, rgba(5, 11, 18, .34) 100%), linear-gradient(0deg, rgba(5, 12, 19, .5), rgba(5, 12, 19, 0) 55%); }
 /* Metaballs has no noise parameter, so the grain is an overlay */
@@ -1421,6 +1464,80 @@ a.pm-card { cursor: pointer; }
   .project-panel-overview { font-size: 13px; }
   .project-download { width: 100%; min-width: 0; }
   .project-panel-media { min-height: 78vw; }
+}
+
+/* ---------- Projects page: core + pathway-switcher layout ---------- */
+
+.projects-browser { padding: 64px 24px 90px; }
+.pjb-section-head { max-width: 70ch; margin-bottom: 30px; }
+.pjb-eyebrow { display: block; color: var(--orange); font-size: var(--eyebrow-sm); font-weight: var(--eyebrow-weight); letter-spacing: var(--eyebrow-tracking); text-transform: uppercase; }
+.pjb-section-head h2 { margin: var(--eyebrow-gap) 0 0; font-family: var(--display); font-size: clamp(30px, 3.2vw, 46px); font-weight: 300; letter-spacing: -.03em; }
+.pjb-section-head p { max-width: 62ch; margin: 14px 0 0; color: #3b4a54; font-size: 15px; line-height: 1.6; }
+
+.pjb-core { margin-bottom: 76px; }
+.pjb-core-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.pjb-core-card {
+  padding: 26px 24px 28px; border: 1px solid rgba(10, 53, 82, .12); border-radius: 14px;
+  background: #ffffff; box-shadow: 0 2px 10px rgba(10, 53, 82, .06);
+  transition: transform 280ms ease, box-shadow 280ms ease, border-color 280ms ease;
+}
+.pjb-core-card:hover { transform: translateY(-3px); border-color: rgba(29, 157, 240, .35); box-shadow: 0 14px 32px rgba(10, 53, 82, .12); }
+.pjb-core-icon { display: grid; place-items: center; width: 42px; height: 42px; margin-bottom: 16px; border-radius: 11px; background: rgba(29, 157, 240, .1); color: var(--sky); }
+.pjb-core-card strong { display: block; font-family: var(--display); font-size: 18px; font-weight: 500; letter-spacing: -.01em; color: var(--paper); }
+.pjb-core-card em { display: block; margin-top: 6px; font-style: normal; color: var(--sky); font-size: 11px; font-weight: 500; letter-spacing: .06em; }
+.pjb-core-card span { display: block; margin-top: 10px; color: #4c6577; font-size: 13.5px; line-height: 1.6; }
+
+.pjb-pathways { padding-top: 56px; border-top: 1px solid var(--rule); }
+
+.pjb-switcher { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-bottom: 28px; }
+.pjb-switcher button {
+  display: flex; align-items: center; gap: 12px; padding: 18px 20px; border: 1px solid rgba(10, 53, 82, .14); border-radius: 12px;
+  background: #ffffff; color: #405564; cursor: pointer; text-align: left;
+  font-family: var(--display); font-size: 16px; font-weight: 400; letter-spacing: -.01em;
+  transition: border-color 220ms ease, background 220ms ease, color 220ms ease, transform 220ms ease;
+}
+.pjb-switcher button:hover { border-color: rgba(29, 157, 240, .35); transform: translateY(-2px); }
+.pjb-switcher button.is-active { border-color: var(--orange); background: linear-gradient(180deg, rgba(247, 143, 32, .04), rgba(247, 143, 32, .09)); color: var(--paper); }
+.pjb-switcher button svg { flex: none; color: var(--sky); }
+.pjb-switcher button.is-active svg { color: var(--orange); }
+
+/* Shader identity panel for the active option. No production photography exists
+   yet (see prompts.md) — this runs on the same WebGL mesh used sitewide, just
+   re-weighted per option, with a solid per-option gradient as the mobile/no-JS
+   fallback since PageHeroShader only renders at >=900px. Swap for a real photo
+   the same way the homepage hero would be, once one exists. */
+.pjb-pathway-banner { position: relative; overflow: hidden; height: 240px; border-radius: 16px; margin-bottom: 24px; background: linear-gradient(135deg, #0a3552 0%, #123049 60%, #0a0f0f 100%); }
+.pjb-pathway-banner--post { background: linear-gradient(135deg, #0a3552 0%, #0c2b52 60%, #080d14 100%); }
+.pjb-pathway-banner--live-arts { background: linear-gradient(135deg, #123049 0%, #7a3d10 75%, #0a0f0f 100%); }
+.pjb-pathway-banner-plate { object-fit: cover; filter: saturate(.7) contrast(1.05) brightness(.62); }
+/* Shader wash sits above the photo as a colour grade (soft-light), below the
+   scrim that keeps the title legible. Hidden entirely under 900px along with
+   the shader component itself, leaving the photo + scrim alone — plenty. */
+.pjb-pathway-banner-shader { position: absolute; z-index: 1; inset: 0; mix-blend-mode: soft-light; opacity: .8; }
+.pjb-pathway-banner-scrim { position: absolute; inset: 0; z-index: 2; background: linear-gradient(0deg, rgba(5, 11, 18, .6), rgba(5, 11, 18, .12) 65%); }
+.pjb-pathway-banner-content { position: relative; z-index: 3; display: flex; height: 100%; align-items: center; gap: 16px; padding: 0 28px; }
+.pjb-pathway-banner-icon { display: grid; flex: none; place-items: center; width: 56px; height: 56px; border-radius: 14px; background: rgba(255, 255, 255, .12); color: #ffffff; backdrop-filter: blur(6px); }
+.pjb-pathway-banner-content h3 { margin: 0; color: #ffffff; font-family: var(--display); font-size: clamp(26px, 3vw, 34px); font-weight: 300; letter-spacing: -.02em; }
+
+.pjb-pathway-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; }
+.pjb-project-card {
+  position: relative; padding: 20px 22px; border: 1px solid rgba(10, 53, 82, .1); border-radius: 12px;
+  background: #ffffff; box-shadow: 0 2px 10px rgba(10, 53, 82, .05);
+  transition: border-color 220ms ease, transform 220ms ease;
+}
+.pjb-project-card:hover { border-color: rgba(29, 157, 240, .35); transform: translateY(-2px); }
+.pjb-project-number { display: block; margin-bottom: 8px; color: var(--sky); font-family: var(--display); font-size: 12px; font-weight: 500; letter-spacing: .1em; }
+.pjb-project-card strong { display: block; font-family: var(--display); font-size: 15.5px; font-weight: 500; letter-spacing: -.01em; color: var(--paper); }
+.pjb-project-card span { display: block; margin-top: 6px; color: #4c6577; font-size: 13px; line-height: 1.58; }
+.pjb-project-card.is-flexible { border-color: rgba(247, 143, 32, .3); background: rgba(247, 143, 32, .04); }
+.pjb-project-card.is-flexible .pjb-project-number { color: var(--orange); }
+.pjb-project-card.is-flexible strong { color: var(--orange); }
+
+@media (max-width: 900px) {
+  .pjb-core-grid { grid-template-columns: 1fr; }
+  .pjb-switcher { grid-template-columns: 1fr; }
+  .pjb-pathway-grid { grid-template-columns: 1fr; }
+  .pjb-pathway-banner { height: 140px; }
 }
 
 /* ---------- Site footer ---------- */

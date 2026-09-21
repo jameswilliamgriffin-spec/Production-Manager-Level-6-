@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { HeroDotField } from '@/components/hero-dot-field';
 import { PageHeroShader } from '@/components/page-hero-shader';
 import { ScrambleText } from '@/components/scramble-text';
@@ -8,14 +9,26 @@ type PageHeroProps = {
   eyebrow?: string;
   meta?: React.ReactNode;
   className?: string;
+  image?: string;
+  imageAlt?: string;
 };
 
 // Intro reveal is CSS-driven (see .ksb-hero-copy rules in globals.css). A mount-time
 // JS animation here competes with the WebGL shader sibling for the main thread and
 // can stall, leaving the copy invisible.
-export function PageHero({ title, copy, eyebrow, meta, className = '' }: PageHeroProps) {
+export function PageHero({ title, copy, eyebrow, meta, className = '', image, imageAlt }: PageHeroProps) {
   return (
     <section className={`ksb-hero ${className}`.trim()}>
+      {image && (
+        <Image
+          className="ksb-hero-plate"
+          src={image}
+          alt={imageAlt ?? ''}
+          fill
+          priority
+          sizes="100vw"
+        />
+      )}
       <PageHeroShader />
       <HeroDotField />
       <div className="ksb-hero-copy">

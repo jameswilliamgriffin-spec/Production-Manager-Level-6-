@@ -32,6 +32,8 @@ export type CoreModule = {
   /** The same underlying deliverable, named the way each option's own industry
    *  would actually call it — not a separate brief, just its real-world name. */
   pathwayPieceTitles: PathwayPieceTitle[];
+  image: string;
+  imageAlt: string;
 };
 
 export const coreModules: CoreModule[] = [
@@ -69,6 +71,8 @@ export const coreModules: CoreModule[] = [
       { optionId: 'post', title: 'The Post Schedule' },
       { optionId: 'live-arts', title: 'The Production Book' },
     ],
+    image: '/images/training-seminar.webp',
+    imageAlt: 'A seminar-style training session with a group around a table',
   },
   {
     id: 'legal-regulatory-sustainable',
@@ -102,6 +106,8 @@ export const coreModules: CoreModule[] = [
       { optionId: 'post', title: 'The Post Compliance Audit' },
       { optionId: 'live-arts', title: 'The Green Book Audit' },
     ],
+    image: '/images/training-portfolio-review.webp',
+    imageAlt: 'Reviewing a portfolio of evidence documents at a desk',
   },
   {
     id: 'leadership-stakeholders',
@@ -129,12 +135,15 @@ export const coreModules: CoreModule[] = [
       { optionId: 'post', title: 'The Studio Briefing' },
       { optionId: 'live-arts', title: 'The Company Briefing' },
     ],
+    image: '/images/training-121-coaching.webp',
+    imageAlt: 'A development coach and learner in a one-to-one coaching session',
   },
 ];
 
 export type OptionBrief = {
   title: string;
   trigger: string;
+  isFlexible?: boolean;
 };
 
 export type OptionWork = {
