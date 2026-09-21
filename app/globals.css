@@ -868,6 +868,27 @@ a.pm-card { cursor: pointer; }
 .epa-assumption p { margin: 10px 0 0; color: #3d5160; font-size: 13px; line-height: 1.7; }
 .epa-assumption p:first-of-type { margin-top: 0; }
 
+/* Big, unmissable link to the source document the whole callout above is
+   built from — deliberately heavier than .pm-cta, since this is the primary
+   action on the page rather than a secondary "explore" nudge. */
+.epa-proposal-download {
+  display: flex; align-items: center; gap: 18px; width: 100%; margin-top: 22px; padding: 20px 24px;
+  border: 1px solid rgba(10, 53, 82, .14); border-radius: 14px; background: #ffffff;
+  text-decoration: none; transition: border-color 240ms ease, background 240ms ease, transform 240ms ease, box-shadow 240ms ease;
+}
+.epa-proposal-download:hover { border-color: var(--orange); background: rgba(247, 143, 32, .05); transform: translateY(-2px); box-shadow: 0 14px 32px rgba(10, 53, 82, .12); }
+.epa-proposal-download:focus-visible { outline: var(--focus-ring); outline-offset: 3px; }
+.epa-proposal-download-icon { display: grid; flex: none; place-items: center; width: 52px; height: 52px; border-radius: 12px; background: rgba(247, 143, 32, .1); color: var(--orange); }
+.epa-proposal-download-text { display: flex; flex: 1; flex-direction: column; gap: 4px; min-width: 0; }
+.epa-proposal-download-text strong { font-family: var(--display); font-size: 17px; font-weight: 500; letter-spacing: -.01em; color: var(--paper); }
+.epa-proposal-download-text span { color: var(--meta); font-size: 12px; letter-spacing: .01em; }
+.epa-proposal-download-arrow { flex: none; color: var(--orange); font-size: 20px; transition: transform 240ms ease; }
+.epa-proposal-download:hover .epa-proposal-download-arrow { transform: translateY(3px); }
+
+@media (max-width: 560px) {
+  .epa-proposal-download { flex-wrap: wrap; }
+}
+
 .epa-descriptor-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; margin: 24px 0 0; padding: 1px; background: var(--rule); }
 .epa-descriptor-item { display: flex; align-items: center; gap: 12px; padding: 16px 18px; background: var(--card-bg); color: var(--paper); font-family: var(--display); font-size: 15px; font-weight: 300; letter-spacing: -.01em; }
 .epa-descriptor-item i { flex: none; color: var(--sky); font-family: var(--display); font-size: 11px; font-style: normal; font-weight: 500; }
@@ -1536,6 +1557,9 @@ a.pm-card { cursor: pointer; }
 .pjb-project-card.is-flexible { border-color: rgba(247, 143, 32, .3); background: rgba(247, 143, 32, .04); }
 .pjb-project-card.is-flexible .pjb-project-number { color: var(--orange); }
 .pjb-project-card.is-flexible strong { color: var(--orange); }
+/* The real-workplace trigger sits under the main "what it entails" summary —
+   smaller and muted, a footnote rather than the headline description. */
+.pjb-project-trigger { margin: 8px 0 0; color: #7488a0; font-size: 11.5px; font-style: italic; line-height: 1.5; }
 
 /* Full KSB criteria listed under a core or pathway project card — codes with
    their official wording in full, not just the bare chips used on the

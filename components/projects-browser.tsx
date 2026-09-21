@@ -149,6 +149,7 @@ function PathwayProjects({ pathways }: { pathways: ProjectCategory[] }) {
                   <span className="pjb-project-number">{item.number}</span>
                   <strong>{item.title}</strong>
                   <span>{item.description}</span>
+                  {item.trigger && <p className="pjb-project-trigger">{item.trigger}</p>}
                   <KsbFullList ids={item.ksbIds} />
                 </div>
               ))}

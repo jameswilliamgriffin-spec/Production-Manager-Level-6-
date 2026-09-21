@@ -1,3 +1,4 @@
+import { FileText } from 'lucide-react';
 import type { Metadata } from 'next';
 import { PageHero } from '@/components/page-hero';
 import { RevealArticle, RevealListItem, ScrollReveal } from '@/components/motion-primitives';
@@ -103,6 +104,20 @@ export default function EpaPage() {
           {workingAssumption.paragraphs.map((paragraph) => (
             <p key={paragraph.slice(0, 32)}>{paragraph}</p>
           ))}
+          <a
+            className="epa-proposal-download"
+            href="/documents/pm-aim-apprenticeship-assessment-stakeholder-proposal.docx"
+            download
+          >
+            <span className="epa-proposal-download-icon" aria-hidden="true">
+              <FileText size={26} strokeWidth={1.4} />
+            </span>
+            <span className="epa-proposal-download-text">
+              <strong>Read AIM&rsquo;s full stakeholder proposal</strong>
+              <span>Apprenticeship Assessment Stakeholder Proposal Form · original document · .docx</span>
+            </span>
+            <span className="epa-proposal-download-arrow" aria-hidden="true">{'↓'}</span>
+          </a>
         </ScrollReveal>
       </section>
 

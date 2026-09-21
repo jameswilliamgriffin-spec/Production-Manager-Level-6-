@@ -10,6 +10,10 @@ export type ProjectItem = {
   number: string;
   title: string;
   description: string;
+  /** The real-workplace situation that triggers picking this project up —
+   *  only set for option-specific briefs, not the core pieces of work
+   *  (which sit on a fixed delivery calendar rather than being pulled). */
+  trigger?: string;
   meta?: string;
   isFlexible?: boolean;
   ksbIds: string[];
@@ -50,7 +54,8 @@ export const projectCategories: ProjectCategory[] = [
         id: `${option.id}-${briefIndex}`,
         number: pad(briefIndex + 1),
         title: brief.title,
-        description: brief.trigger,
+        description: brief.summary,
+        trigger: brief.trigger,
         ksbIds: brief.ksbIds,
       })),
       {
