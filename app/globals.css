@@ -598,6 +598,10 @@ a.pm-card { cursor: pointer; }
 .po-project-card.is-flexible:hover { border-color: rgba(247, 143, 32, .5); background: rgba(247, 143, 32, .07); }
 .po-project-card.is-flexible strong { color: var(--orange); }
 .po-project-card.is-flexible .po-card-chevron { color: var(--orange); }
+/* `.duty-ksbs`/`.duty-chip` are shared with the KSB page's Assessment Outcome
+   cards; `.po-ksb-row` just adds the top margin its `auto` rule collapses to
+   0 outside a flex/grid parent. */
+.po-ksb-row { margin-top: 14px; }
 
 @media (max-width: 1120px) {
   .po-module-grid, .po-option-columns { grid-template-columns: 1fr; }
@@ -1532,6 +1536,16 @@ a.pm-card { cursor: pointer; }
 .pjb-project-card.is-flexible { border-color: rgba(247, 143, 32, .3); background: rgba(247, 143, 32, .04); }
 .pjb-project-card.is-flexible .pjb-project-number { color: var(--orange); }
 .pjb-project-card.is-flexible strong { color: var(--orange); }
+
+/* Full KSB criteria listed under a core or pathway project card — codes with
+   their official wording in full, not just the bare chips used on the
+   homepage overview (see .po-ksb-row / KsbChipRow). */
+.pjb-ksb-refs { display: flex; flex-direction: column; gap: 10px; margin: 16px 0 0; padding: 14px 0 0; border-top: 1px solid rgba(10, 53, 82, .1); list-style: none; }
+.pjb-ksb-ref { display: flex; gap: 10px; align-items: baseline; }
+.pjb-ksb-ref-code { flex: none; min-width: 26px; margin: 0; color: var(--sky); font-family: var(--display); font-size: 10.5px; font-weight: 500; letter-spacing: .08em; }
+.pjb-ksb-ref-text { margin: 0; color: #506577; font-size: 12px; line-height: 1.55; }
+.pjb-ksb-ref-S .pjb-ksb-ref-code { color: var(--orange); }
+.pjb-ksb-ref-B .pjb-ksb-ref-code { color: var(--paper); }
 
 @media (max-width: 900px) {
   .pjb-core-grid { grid-template-columns: 1fr; }

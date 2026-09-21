@@ -4,6 +4,7 @@ import { CalendarClock, Clapperboard, Layers, Scale, Theater, Users } from 'luci
 import { AnimatePresence, motion, useReducedMotion } from 'motion/react';
 import Image from 'next/image';
 import { useState } from 'react';
+import { KsbFullList } from '@/components/ksb-refs';
 import { PageHeroShader } from '@/components/page-hero-shader';
 import { projectCategories, type ProjectCategory } from '@/lib/project-data';
 
@@ -67,6 +68,7 @@ function CoreProjects({ core }: { core: ProjectCategory }) {
               <strong>{item.title}</strong>
               {item.meta && <em>{item.meta}</em>}
               <span>{item.description}</span>
+              <KsbFullList ids={item.ksbIds} />
             </motion.div>
           );
         })}
@@ -147,6 +149,7 @@ function PathwayProjects({ pathways }: { pathways: ProjectCategory[] }) {
                   <span className="pjb-project-number">{item.number}</span>
                   <strong>{item.title}</strong>
                   <span>{item.description}</span>
+                  <KsbFullList ids={item.ksbIds} />
                 </div>
               ))}
             </div>

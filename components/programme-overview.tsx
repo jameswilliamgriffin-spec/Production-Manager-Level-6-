@@ -3,6 +3,7 @@
 import { Clapperboard, Layers, Theater } from 'lucide-react';
 import { motion, useReducedMotion } from 'motion/react';
 import { useState } from 'react';
+import { KsbChipRow } from '@/components/ksb-refs';
 import { MagneticCta } from '@/components/magnetic-cta';
 import { ScrambleText } from '@/components/scramble-text';
 import { SectionRule } from '@/components/section-rule';
@@ -145,6 +146,7 @@ export function ProgrammeOverview() {
                             </li>
                           ))}
                         </ul>
+                        <KsbChipRow ids={module.ksbIds} />
                       </div>
                     </div>
                   </div>
@@ -168,7 +170,7 @@ export function ProgrammeOverview() {
             const Icon = optionIcons[option.id];
             const allBriefs = [
               ...option.briefs,
-              { title: option.flexName, trigger: option.flexDescription, isFlexible: true as const },
+              { title: option.flexName, trigger: option.flexDescription, ksbIds: option.flexKsbIds, isFlexible: true as const },
             ];
             return (
               <div className="po-option-column" key={option.id}>
@@ -198,6 +200,7 @@ export function ProgrammeOverview() {
                           <span className="po-card-panel-clip">
                             <span className="po-card-panel" inert={!isOpen}>
                               {brief.trigger}
+                              <KsbChipRow ids={brief.ksbIds} />
                             </span>
                           </span>
                         </span>

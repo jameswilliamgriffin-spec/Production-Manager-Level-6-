@@ -32,6 +32,8 @@ export type CoreModule = {
   /** The same underlying deliverable, named the way each option's own industry
    *  would actually call it — not a separate brief, just its real-world name. */
   pathwayPieceTitles: PathwayPieceTitle[];
+  /** Core Knowledge KSBs this piece of work evidences — see research notes §9. */
+  ksbIds: string[];
   image: string;
   imageAlt: string;
 };
@@ -71,6 +73,7 @@ export const coreModules: CoreModule[] = [
       { optionId: 'post', title: 'The Post Schedule' },
       { optionId: 'live-arts', title: 'The Production Book' },
     ],
+    ksbIds: ['K1', 'K7', 'K8', 'K10'],
     image: '/images/training-seminar.webp',
     imageAlt: 'A seminar-style training session with a group around a table',
   },
@@ -106,6 +109,7 @@ export const coreModules: CoreModule[] = [
       { optionId: 'post', title: 'The Post Compliance Audit' },
       { optionId: 'live-arts', title: 'The Green Book Audit' },
     ],
+    ksbIds: ['K5', 'K6', 'K9'],
     image: '/images/training-portfolio-review.webp',
     imageAlt: 'Reviewing a portfolio of evidence documents at a desk',
   },
@@ -135,6 +139,7 @@ export const coreModules: CoreModule[] = [
       { optionId: 'post', title: 'The Studio Briefing' },
       { optionId: 'live-arts', title: 'The Company Briefing' },
     ],
+    ksbIds: ['K2', 'K3', 'K4'],
     image: '/images/training-121-coaching.webp',
     imageAlt: 'A development coach and learner in a one-to-one coaching session',
   },
@@ -143,6 +148,8 @@ export const coreModules: CoreModule[] = [
 export type OptionBrief = {
   title: string;
   trigger: string;
+  /** KSBs this brief evidences — see research notes §10. */
+  ksbIds: string[];
   isFlexible?: boolean;
 };
 
@@ -152,7 +159,14 @@ export type OptionWork = {
   briefs: OptionBrief[];
   flexName: string;
   flexDescription: string;
+  /** The core Skills deferred from §9's knowledge-only module pieces of work —
+   *  evidenced as real workplace instances rather than a constructed document,
+   *  so they live here rather than against any single named brief. Same list
+   *  in every option: these are core-scope, not pathway-specific. */
+  flexKsbIds: string[];
 };
+
+const deferredCoreSkillIds = ['S1', 'S2', 'S3', 'S4', 'S5', 'S6', 'S7', 'S8', 'S9', 'S10'];
 
 // §10 — a shelf of situation-triggered briefs per option, pulled whenever real
 // work matches, in any order. Synoptic K+S together, unlike the core modules
@@ -163,36 +177,39 @@ export const optionWork: OptionWork[] = [
     id: 'screen-audio',
     name: 'Screen & audio',
     briefs: [
-      { title: 'Plan and coordinate a production workflow', trigger: 'Pulled whenever the learner is planning or scheduling content and agreeing timelines and responsibilities across departments.' },
-      { title: 'Manage a financial or compliance risk', trigger: 'Pulled whenever the learner is handling a real financial, rights-clearance or compliance issue on a live production.' },
-      { title: 'Source and manage production or post-production resources', trigger: 'Pulled whenever the learner is resourcing a shoot or post job cost- and time-effectively.' },
-      { title: 'Deliver to a technical, brand or international standard', trigger: 'Pulled whenever the learner is navigating delivery standards, brand or franchise requirements, international versioning, or an AI-related production decision.' },
+      { title: 'Plan and coordinate a production workflow', trigger: 'Pulled whenever the learner is planning or scheduling content and agreeing timelines and responsibilities across departments.', ksbIds: ['K11', 'K12', 'K13', 'S11', 'S12'] },
+      { title: 'Manage a financial or compliance risk', trigger: 'Pulled whenever the learner is handling a real financial, rights-clearance or compliance issue on a live production.', ksbIds: ['K14', 'K15', 'S13', 'S14'] },
+      { title: 'Source and manage production or post-production resources', trigger: 'Pulled whenever the learner is resourcing a shoot or post job cost- and time-effectively.', ksbIds: ['K16', 'S15'] },
+      { title: 'Deliver to a technical, brand or international standard', trigger: 'Pulled whenever the learner is navigating delivery standards, brand or franchise requirements, international versioning, or an AI-related production decision.', ksbIds: ['K17', 'K18', 'K19', 'S16'] },
     ],
     flexName: 'As Directed',
     flexDescription: 'Standard call-sheet and contract language for work assigned at the point of need rather than pre-scheduled.',
+    flexKsbIds: deferredCoreSkillIds,
   },
   {
     id: 'post',
     name: 'Post production',
     briefs: [
-      { title: 'Develop or maintain a post-production project plan', trigger: 'Pulled whenever the learner is building or maintaining a project plan that balances client objectives against internal targets, coordinating live-action and CG workflow.' },
-      { title: 'Make a resourcing decision using post-production tools', trigger: 'Pulled whenever the learner is using project management tools or databases to allocate resources or make a project-critical call.' },
-      { title: 'Resolve or escalate a technical issue', trigger: 'Pulled whenever the learner is liaising with edit support or technical specialists on a fault, workaround or upgrade, and checking deliverables meet spec.' },
-      { title: 'Manage a client or vendor relationship', trigger: "Pulled whenever the learner is managing coordinators or logistics, preparing cost reports or invoices, or protecting the studio's reputation with a client or vendor." },
+      { title: 'Develop or maintain a post-production project plan', trigger: 'Pulled whenever the learner is building or maintaining a project plan that balances client objectives against internal targets, coordinating live-action and CG workflow.', ksbIds: ['K11', 'K20', 'K21', 'S11', 'S12'] },
+      { title: 'Make a resourcing decision using post-production tools', trigger: 'Pulled whenever the learner is using project management tools or databases to allocate resources or make a project-critical call.', ksbIds: ['K22', 'S17'] },
+      { title: 'Resolve or escalate a technical issue', trigger: 'Pulled whenever the learner is liaising with edit support or technical specialists on a fault, workaround or upgrade, and checking deliverables meet spec.', ksbIds: ['K23', 'S19', 'S20', 'S22'] },
+      { title: 'Manage a client or vendor relationship', trigger: "Pulled whenever the learner is managing coordinators or logistics, preparing cost reports or invoices, or protecting the studio's reputation with a client or vendor.", ksbIds: ['K24', 'K25', 'S18', 'S21', 'S23'] },
     ],
     flexName: 'Change Order',
     flexDescription: 'The real post and VFX-facility term for work requested outside the originally agreed scope.',
+    flexKsbIds: deferredCoreSkillIds,
   },
   {
     id: 'live-arts',
     name: 'Live arts',
     briefs: [
-      { title: "Interpret a live production's technical designs", trigger: 'Pulled whenever the learner is analysing technical drawings, scale models or 3D visualisations, and working out how technical departments contribute and interact.' },
-      { title: 'Coordinate and chair a live production meeting', trigger: 'Pulled whenever the learner is scheduling or chairing a production meeting — white cards, model box sharing, a toolbox talk, a notes session, a debrief — across creative, producing, technical and contractor stakeholders.' },
-      { title: 'Survey a venue or plan touring logistics', trigger: 'Pulled whenever the learner is conducting a technical venue survey or planning touring logistics — riders, carnets, manifests — applying H&S and CDM licensing requirements.' },
-      { title: 'Manage scenic materials and delivery', trigger: 'Pulled whenever the learner is working a scenery or staging materials decision, or producing and implementing a production schedule across build, fit-up and technical rehearsal.' },
+      { title: "Interpret a live production's technical designs", trigger: 'Pulled whenever the learner is analysing technical drawings, scale models or 3D visualisations, and working out how technical departments contribute and interact.', ksbIds: ['K27', 'K28', 'S24'] },
+      { title: 'Coordinate and chair a live production meeting', trigger: 'Pulled whenever the learner is scheduling or chairing a production meeting — white cards, model box sharing, a toolbox talk, a notes session, a debrief — across creative, producing, technical and contractor stakeholders.', ksbIds: ['K26', 'K32', 'S26', 'S28'] },
+      { title: 'Survey a venue or plan touring logistics', trigger: 'Pulled whenever the learner is conducting a technical venue survey or planning touring logistics — riders, carnets, manifests — applying H&S and CDM licensing requirements.', ksbIds: ['K30', 'K31', 'S25'] },
+      { title: 'Manage scenic materials and delivery', trigger: 'Pulled whenever the learner is working a scenery or staging materials decision, or producing and implementing a production schedule across build, fit-up and technical rehearsal.', ksbIds: ['K29', 'S27', 'S29', 'S30'] },
     ],
     flexName: 'On the Day',
     flexDescription: 'Theatre and events shorthand for what comes up reactively during build, fit-up or tech week, as opposed to what was planned in advance.',
+    flexKsbIds: deferredCoreSkillIds,
   },
 ];

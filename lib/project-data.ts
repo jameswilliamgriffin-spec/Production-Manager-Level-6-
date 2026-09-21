@@ -12,6 +12,7 @@ export type ProjectItem = {
   description: string;
   meta?: string;
   isFlexible?: boolean;
+  ksbIds: string[];
 };
 
 export type ProjectCategory = {
@@ -36,6 +37,7 @@ export const projectCategories: ProjectCategory[] = [
       title: module.pieceOfWorkTitle,
       description: module.pieceOfWorkDescription,
       meta: `${module.name} · ${module.month}`,
+      ksbIds: module.ksbIds,
     })),
   },
   ...optionWork.map((option, optionIndex) => ({
@@ -49,6 +51,7 @@ export const projectCategories: ProjectCategory[] = [
         number: pad(briefIndex + 1),
         title: brief.title,
         description: brief.trigger,
+        ksbIds: brief.ksbIds,
       })),
       {
         id: `${option.id}-flex`,
@@ -56,6 +59,7 @@ export const projectCategories: ProjectCategory[] = [
         title: option.flexName,
         description: option.flexDescription,
         isFlexible: true,
+        ksbIds: option.flexKsbIds,
       },
     ],
   })),
