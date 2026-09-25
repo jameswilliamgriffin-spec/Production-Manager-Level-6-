@@ -171,7 +171,7 @@ export function ProgrammeOverview() {
             const Icon = optionIcons[option.id];
             const allBriefs = [
               ...option.briefs,
-              { title: option.flexName, trigger: option.flexDescription, ksbIds: option.flexKsbIds, isFlexible: true as const },
+              { title: option.flexName, summary: option.flexDescription, ksbIds: option.flexKsbIds, isFlexible: true as const },
             ];
             return (
               <div className="po-option-column" key={option.id}>
