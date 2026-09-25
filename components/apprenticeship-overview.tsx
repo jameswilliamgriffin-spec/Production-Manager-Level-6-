@@ -20,7 +20,7 @@ const ease = [0.22, 1, 0.36, 1] as const;
 const pathways = [
   {
     number: '01',
-    title: 'Junior Production Manager',
+    title: 'Production Manager',
     specialism: 'Screen & Audio',
     image: '/images/option-screen-audio-office.webp',
     alt: 'A broadcast production office with schedules and multi-monitor workstations',
@@ -43,7 +43,7 @@ const pathways = [
   },
   {
     number: '02',
-    title: 'Junior Post Production Manager',
+    title: 'Post Production Manager',
     specialism: 'Post & VFX',
     image: '/images/option-post-suite.webp',
     alt: 'A post-production suite with an editor reviewing footage on multiple screens',

@@ -90,9 +90,10 @@ export function ProgrammeOverview() {
 
       <motion.div className="po-core" {...reveal}>
         <h3 className="po-subhead">Core modules</h3>
-        <p className="po-options-intro">
-          Taken in any order — whichever module comes round next on the delivery calendar after a learner
-          joins, depending on when in the year that is.
+        <p className="po-options-intro po-core-intro">
+          Embedded into the workplace, you will build a portfolio of work that is unique to you and your
+          workplace. Reflecting and building off your projects and written up — no fixed order, no fixed
+          timing. Click a brief for what it means in practice.
         </p>
         <div className="po-module-grid">
           {coreModules.map((module) => {
@@ -199,7 +200,7 @@ export function ProgrammeOverview() {
                         <span className="po-card-panel-outer" data-open={isOpen || undefined}>
                           <span className="po-card-panel-clip">
                             <span className="po-card-panel" inert={!isOpen}>
-                              {brief.trigger}
+                              {brief.summary}
                               <KsbChipRow ids={brief.ksbIds} />
                             </span>
                           </span>

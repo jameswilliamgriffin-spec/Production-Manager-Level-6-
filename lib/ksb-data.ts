@@ -6,8 +6,8 @@
 //
 // `scope` records who a KSB applies to:
 //   core         - every apprentice, whichever option
-//   screen-audio - Option 1, Junior production manager (screen and audio) only
-//   post         - Option 2, Junior post production manager only
+//   screen-audio - Option 1, production manager (screen and audio) only
+//   post         - Option 2, post production manager only
 //   live-arts    - Option 3, Assistant production manager (live arts) only
 //   screen-post  - shared by Option 1 and Option 2, but not Option 3 (K11, S11, S12)
 //
@@ -30,8 +30,8 @@ export type Ksb = {
 export type PathwayId = 'screen-audio' | 'post' | 'live-arts';
 
 export const pathways: { id: PathwayId; number: string; name: string; specialism: string; scopes: KsbScope[] }[] = [
-  { id: 'screen-audio', number: '01', name: 'Junior Production Manager', specialism: 'Screen & Audio', scopes: ['screen-audio', 'screen-post'] },
-  { id: 'post', number: '02', name: 'Junior Post Production Manager', specialism: 'Post & VFX', scopes: ['post', 'screen-post'] },
+  { id: 'screen-audio', number: '01', name: 'Production Manager', specialism: 'Screen & Audio', scopes: ['screen-audio', 'screen-post'] },
+  { id: 'post', number: '02', name: 'Post Production Manager', specialism: 'Post & VFX', scopes: ['post', 'screen-post'] },
   { id: 'live-arts', number: '03', name: 'Assistant Production Manager', specialism: 'Live Arts', scopes: ['live-arts'] },
 ];
 
@@ -75,7 +75,7 @@ export const ksbs: Ksb[] = [
   { id: 'B6', type: 'B', scope: 'core', text: 'Demonstrates commitment to continuous professional development; maintains knowledge/skills in relation to industry developments.' },
   { id: 'B7', type: 'B', scope: 'core', text: 'Takes personal responsibility to ensure production outcomes are met in a sustainable way.' },
 
-  // --- Option 1: Junior production manager – screen and audio ---
+  // --- Option 1: Production manager – screen and audio ---
   { id: 'K11', type: 'K', scope: 'screen-post', text: 'End-to-end production workflow from pre-production through to distribution, and how stages/departments interact.' },
   { id: 'K12', type: 'K', scope: 'screen-audio', text: 'Key issues and challenges relating to multiplatform and/or media asset management in production management.' },
   { id: 'K13', type: 'K', scope: 'screen-audio', text: 'Effects of production activities (acquisition, studio production, outside broadcasting, location filming, editing, processing, VFX).' },
@@ -93,7 +93,7 @@ export const ksbs: Ksb[] = [
   { id: 'S15', type: 'S', scope: 'screen-audio', text: 'Identify, plan and source production/post production resources (camera equipment, editing, remote working tech, sound, VFX) cost- and time-effectively.' },
   { id: 'S16', type: 'S', scope: 'screen-audio', text: 'Ensure programme deliverables meet technical standards (format, quality) for domestic or international delivery.' },
 
-  // --- Option 2: Junior post production manager ---
+  // --- Option 2: Post production manager ---
   { id: 'K20', type: 'K', scope: 'post', text: 'Methods to produce and maintain a project plan that delivers client objectives while setting internal targets.' },
   { id: 'K21', type: 'K', scope: 'post', text: 'Workflow of both live-action and CG based projects and the functions of relevant departments within that workflow.' },
   { id: 'K22', type: 'K', scope: 'post', text: 'Capabilities/utilisation of project management tools, databases and software (Shotgun, Filemaker, MS Project, Excel, scheduling systems).' },
