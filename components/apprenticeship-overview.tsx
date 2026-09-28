@@ -39,7 +39,7 @@ const pathways = [
     ],
     techniques: ['GREENLIGHT DOCS', 'DELIVERY STANDARDS', 'RIGHTS CLEARANCE', 'BRAND IDENTITY', 'RESPONSIBLE AI', 'INTERNATIONAL VERSIONING'],
     progression:
-      'Builds toward production manager, line producer or post producer roles across film, TV, commercials and audio.',
+      'Builds toward senior production manager, line producer or post producer roles across film, TV, commercials and audio.',
   },
   {
     number: '02',
@@ -66,13 +66,13 @@ const pathways = [
   },
   {
     number: '03',
-    title: 'Assistant Production Manager',
+    title: 'Production Manager',
     specialism: 'Live Arts',
     image: '/images/option-live-arts-backstage.webp',
     alt: 'A stage manager backstage with a headset and running sheet during a technical rehearsal',
     tags: ['TECHNICAL', 'VENUES', 'TOURING'],
     summary:
-      'Supports the technical director in realising every technical element of a production design — for live performance and live events — within agreed budget, time and technical parameters, across theatres, touring venues and non-traditional spaces.',
+      'Leads the technical realisation of a production design — for live performance and live events — within agreed budget, time and technical parameters, across theatres, touring venues and non-traditional spaces.',
     detail:
       'Turns a designer’s vision into a production a technical department can actually build and run. You read technical drawings and creative designs, survey venues for suitability, chair the meetings that keep every department represented, and hold the schedule together across build, fit-up and technical rehearsal — wherever in the world the tour takes it.',
     does: [
@@ -85,7 +85,7 @@ const pathways = [
     ],
     techniques: ['AUTOCAD', 'CDM REGS', 'TOURING LOGISTICS', 'VENUE SURVEYS', 'SCENIC MATERIALS', 'LICENSING'],
     progression:
-      'Builds toward production manager or technical director roles across theatre, touring and live events.',
+      'Builds toward senior production manager or technical director roles across theatre, touring and live events.',
   },
 ];
 

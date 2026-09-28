@@ -8,7 +8,7 @@
 //   core         - every apprentice, whichever option
 //   screen-audio - Option 1, production manager (screen and audio) only
 //   post         - Option 2, post production manager only
-//   live-arts    - Option 3, Assistant production manager (live arts) only
+//   live-arts    - Option 3, production manager (live arts) only
 //   screen-post  - shared by Option 1 and Option 2, but not Option 3 (K11, S11, S12)
 //
 // The AAP does not yet mark which KSBs are "bold" (mandatory-in-every-assessment)
@@ -32,7 +32,7 @@ export type PathwayId = 'screen-audio' | 'post' | 'live-arts';
 export const pathways: { id: PathwayId; number: string; name: string; specialism: string; scopes: KsbScope[] }[] = [
   { id: 'screen-audio', number: '01', name: 'Production Manager', specialism: 'Screen & Audio', scopes: ['screen-audio', 'screen-post'] },
   { id: 'post', number: '02', name: 'Post Production Manager', specialism: 'Post & VFX', scopes: ['post', 'screen-post'] },
-  { id: 'live-arts', number: '03', name: 'Assistant Production Manager', specialism: 'Live Arts', scopes: ['live-arts'] },
+  { id: 'live-arts', number: '03', name: 'Production Manager', specialism: 'Live Arts', scopes: ['live-arts'] },
 ];
 
 export const typeLabels: Record<KsbType, { label: string; plural: string }> = {
@@ -109,7 +109,7 @@ export const ksbs: Ksb[] = [
   { id: 'S22', type: 'S', scope: 'post', text: 'Ensure content meets industry technical requirements and post production delivery standards (format, quality).' },
   { id: 'S23', type: 'S', scope: 'post', text: "Proactively manage the reputation between project and client — identify scheduling/budget issues that could cause harm, implement changes to protect the studio's brand." },
 
-  // --- Option 3: Assistant production manager – live arts ---
+  // --- Option 3: Production manager – live arts ---
   { id: 'K26', type: 'K', scope: 'live-arts', text: 'Individual challenges posed by different forms of live performance (plays, musicals, dance, opera, festivals, circus, performance art).' },
   { id: 'K27', type: 'K', scope: 'live-arts', text: 'Live arts production process from concept through to delivery of a production/event to an audience.' },
   { id: 'K28', type: 'K', scope: 'live-arts', text: 'Contribution of technical departments and their interactions during production (lighting, sound, video, stage management, automation, staging).' },
